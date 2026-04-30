@@ -1,66 +1,58 @@
 import styled from '@emotion/styled';
 
 export const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  background: #16181c;
+  overflow: hidden;
   cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 `;
 
 export const ImageWrapper = styled.div`
-  position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 6px;
-  background: var(--panel);
+  background-color: #ececec;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
   }
-
-  &:hover img {
-    transform: scale(1.04);
-  }
-`;
-
-export const Badge = styled.div<{ isPaid: boolean }>`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  background: ${({ isPaid }) => (isPaid ? 'rgba(0,0,0,0.75)' : 'rgba(121,236,206,0.15)')};
-  color: ${({ isPaid }) => (isPaid ? '#fff' : 'var(--accent)')};
-  border: 1px solid ${({ isPaid }) => (isPaid ? 'rgba(255,255,255,0.1)' : 'rgba(121,236,206,0.3)')};
-  backdrop-filter: blur(4px);
 `;
 
 export const Info = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 12px;
+`;
+
+export const TextGroup = styled.div`
+  overflow: hidden;
 `;
 
 export const Title = styled.p`
   font-size: 13px;
   font-weight: 500;
-  color: var(--text);
-  white-space: nowrap;
+  margin-bottom: 2px;
+  color: #e7ecef;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const Creator = styled.p`
-  font-size: 12px;
-  color: var(--muted);
+  font-size: 11px;
+  color: #747b82;
+`;
+
+export const Price = styled.span<{ isFree: boolean }>`
+  font-size: 14px;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: ${({ isFree }) => (isFree ? '#79ecce' : '#ffffff')};
+  font-weight: 700;
 `;

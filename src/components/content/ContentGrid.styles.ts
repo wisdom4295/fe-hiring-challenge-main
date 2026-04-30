@@ -1,33 +1,41 @@
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/react';
+
+const spin = keyframes`
+  to { transform: rotate(360deg); }
+`;
 
 export const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding-bottom: 24px;
 `;
 
 export const Header = styled.div`
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
 `;
 
 export const Kicker = styled.span`
-  font-size: 11px;
-  color: var(--subtle);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  color: #e7ecef;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 `;
 
 export const Meta = styled.span`
-  font-size: 12px;
-  color: var(--muted);
+  color: #6f757c;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 `;
 
 export const Grid = styled.div`
   display: grid;
+  gap: 16px;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
@@ -43,5 +51,16 @@ export const Grid = styled.div`
 `;
 
 export const LoadMoreTrigger = styled.div`
-  height: 40px;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+`;
+
+export const Spinner = styled.div`
+  width: 32px;
+  height: 32px;
+  border: 3px solid #2d3136;
+  border-top: 3px solid #79ecce;
+  border-radius: 50%;
+  animation: ${spin} 0.8s linear infinite;
 `;

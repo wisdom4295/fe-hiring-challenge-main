@@ -4,68 +4,71 @@ export const Wrapper = styled.div<{ isActive: boolean }>`
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 170px;
   opacity: ${({ isActive }) => (isActive ? 1 : 0.35)};
   pointer-events: ${({ isActive }) => (isActive ? 'auto' : 'none')};
   transition: opacity 0.2s;
 `;
 
 export const Value = styled.span`
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  min-width: 38px;
+  color: #70767e;
+  font-size: 11px;
+  min-width: 36px;
   text-align: center;
 `;
 
 export const SliderContainer = styled.div`
   position: relative;
-  width: 180px;
-  height: 24px;
+  flex: 1;
+  height: 4px;
+  background-color: #31353b;
+  border-radius: 2px;
 `;
 
 export const RailBg = styled.div`
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 0;
   right: 0;
-  transform: translateY(-50%);
-  height: 3px;
-  background: #2a2e36;
+  height: 100%;
+  background-color: #31353b;
   border-radius: 2px;
 `;
 
 export const RailActive = styled.div`
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 3px;
-  background: var(--accent);
+  height: 100%;
+  background-color: #79ecce;
   border-radius: 2px;
 `;
 
 export const Thumb = styled.input`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 4px;
   top: 0;
-  left: 0;
+  pointer-events: none;
   appearance: none;
   background: transparent;
-  pointer-events: none;
 
   &::-webkit-slider-thumb {
     appearance: none;
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background: var(--accent);
-    pointer-events: auto;
+    background: #79ecce;
     cursor: pointer;
-    box-shadow: 0 0 8px rgba(121, 236, 206, 0.4);
+    pointer-events: all;
+    border: 2px solid #111318;
   }
 
-  &::-webkit-slider-runnable-track {
-    background: transparent;
-    height: 3px;
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #79ecce;
+    cursor: pointer;
+    pointer-events: all;
+    border: 2px solid #111318;
   }
 `;

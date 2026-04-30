@@ -1,11 +1,18 @@
 import { useFilterStore } from '../../store/filterStore';
-
+import { useFilteredContents } from '../../hooks/useFilteredContents';
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import { ContentCard } from './ContentCard';
 import { SkeletonCard } from './SkeletonCard';
 import { NoResult } from './NoResult';
-import { Section, Header, Kicker, Meta, Grid, LoadMoreTrigger } from './ContentGrid.styles';
-import { useFilteredContents } from '../../hooks/useFilteredContents.ts';
-import { useInfiniteScroll } from '../../hooks/useInfiniteScroll.ts';
+import {
+  Section,
+  Header,
+  Kicker,
+  Meta,
+  Grid,
+  LoadMoreTrigger,
+  Spinner,
+} from './ContentGrid.styles';
 
 export function ContentGrid() {
   const loadMore = useFilterStore((s) => s.loadMore);
@@ -29,7 +36,11 @@ export function ContentGrid() {
         </Grid>
       )}
 
-      {hasMore && <LoadMoreTrigger ref={triggerRef} />}
+      {hasMore && (
+        <LoadMoreTrigger ref={triggerRef}>
+          <Spinner />
+        </LoadMoreTrigger>
+      )}
     </Section>
   );
 }

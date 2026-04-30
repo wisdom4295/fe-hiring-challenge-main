@@ -1,14 +1,7 @@
 import { PricingOption } from '../../types';
 import type { PricingOptionValue } from '../../types';
 import { useFilterStore } from '../../store/filterStore';
-import {
-  Wrapper,
-  Label,
-  Options,
-  CheckboxLabel,
-  HiddenCheckbox,
-  CustomCheckbox,
-} from './PricingOptionFilter.styles';
+import { Wrapper, Label, Options, CheckboxLabel } from './PricingOptionFilter.styles';
 
 const FILTER_OPTIONS: { label: string; value: PricingOptionValue }[] = [
   { label: 'Paid', value: PricingOption.PAID },
@@ -26,12 +19,11 @@ export function PricingOptionFilter() {
       <Options>
         {FILTER_OPTIONS.map((opt) => (
           <CheckboxLabel key={opt.value}>
-            <HiddenCheckbox
+            <input
               type="checkbox"
               checked={selectedPricingOptions.includes(opt.value)}
               onChange={() => togglePricingOption(opt.value)}
             />
-            <CustomCheckbox checked={selectedPricingOptions.includes(opt.value)} />
             <span>{opt.label}</span>
           </CheckboxLabel>
         ))}

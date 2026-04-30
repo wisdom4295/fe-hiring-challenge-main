@@ -7,28 +7,28 @@ const pulse = keyframes`
 `;
 
 export const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  background-color: #16181c;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.02);
 `;
 
 export const ImageSkeleton = styled.div`
   width: 100%;
-  aspect-ratio: 3 / 4;
-  background: var(--panel-soft);
-  border-radius: 6px;
-  animation: ${pulse} 1.6s ease-in-out infinite;
+  aspect-ratio: 1 / 1;
+  background-color: #262a30;
+  animation: ${pulse} 1.5s ease-in-out infinite;
 `;
 
 export const Info = styled.div`
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 `;
 
 export const Line = styled.div`
-  height: 11px;
-  background: var(--panel-soft);
+  height: 12px;
+  background-color: #262a30;
   border-radius: 4px;
-  animation: ${pulse} 1.6s ease-in-out infinite;
+  animation: ${pulse} 1.5s ease-in-out infinite;
 `;
