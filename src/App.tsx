@@ -1,43 +1,63 @@
-import { useEffect } from 'react';
-import { useStore } from './context';
-import { fetchContents } from './api';
-import { Header, SearchBar } from './components/Header';
-import { ContentsFilter, PricingSlider, Sorting } from './components/Filter';
-import { ContentsList } from './components/Content';
-import './App.css';
+import styled from '@emotion/styled';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter } from 'react-router-dom';
+import { Header, SearchBar } from './components/layout/Header';
+import { FilterBar } from './components/filter/FilterBar';
+import { SortDropdown } from './components/sort/SortDropdown';
+import { ContentGrid } from './components/content/ContentGrid';
+import { useSyncFilterToUrl } from './hooks/useSyncFilterToUrl';
 
-function App() {
-  const store = useStore();
+const queryClient = new QueryClient();
 
-  useEffect(() => {
-    const loadData = async () => {
-      store.setIsLoading(true);
-      const data = await fetchContents();
-      store.setContents(data);
-      store.setIsLoading(false);
-    };
-
-    loadData();
-  }, [store.searchKeyword, store.selectedPricingOptions]);
+function AppInner() {
+  useSyncFilterToUrl();
 
   return (
-    <div className="app">
+    <AppWrapper>
       <Header />
-      <main className="app-main">
-        <div className="app-shell">
+      <Main>
+        <Shell>
           <SearchBar />
-          <div className="filter-row">
-            <ContentsFilter />
-            <PricingSlider />
-          </div>
-          <div className="sort-row">
-            <Sorting />
-          </div>
-          <ContentsList />
-        </div>
-      </main>
-    </div>
+          <FilterBar />
+          <SortRow>
+            <SortDropdown />
+          </SortRow>
+          <ContentGrid />
+        </Shell>
+      </Main>
+    </AppWrapper>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <AppInner />
+      </QueryClientProvider>
+    </BrowserRouter>
+  );
+}
+
+const AppWrapper = styled.div`
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+`;
+
+const Main = styled.main`
+  padding: 32px;
+`;
+
+const Shell = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+const SortRow = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
