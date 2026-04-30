@@ -16,3 +16,11 @@ export interface ContentItem {
 }
 
 export type SortOption = 'name' | 'price_high' | 'price_low';
+
+export interface FilterState {
+  keyword: string;
+  selectedPricingOptions: PricingOptionValue[];
+  sort: SortOption;
+  priceMin: number;
+  priceMax: number;
+}
