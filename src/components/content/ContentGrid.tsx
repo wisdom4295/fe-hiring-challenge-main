@@ -4,6 +4,7 @@ import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import { ContentCard } from './ContentCard';
 import { SkeletonCard } from './SkeletonCard';
 import { NoResult } from './NoResult';
+import { ErrorResult } from './ErrorResult';
 import {
   Section,
   Header,
@@ -16,8 +17,17 @@ import {
 
 export function ContentGrid() {
   const loadMore = useFilterStore((s) => s.loadMore);
-  const { isLoading, displayedContents, hasMore, totalCount } = useFilteredContents();
+  const { isLoading, isError, refetch, displayedContents, hasMore, totalCount } =
+    useFilteredContents();
   const triggerRef = useInfiniteScroll(loadMore, hasMore);
+
+  if (isError) {
+    return (
+      <Section>
+        <ErrorResult onRetry={refetch} />
+      </Section>
+    );
+  }
 
   return (
     <Section>

@@ -6,7 +6,12 @@ import { applyFilters } from '../utils/filterUtils';
 import type { FilterState } from '../types';
 
 export function useFilteredContents() {
-  const { data: allContents = [], isLoading } = useQuery({
+  const {
+    data: allContents = [],
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
     queryKey: ['contents'],
     queryFn: fetchContents,
     staleTime: Infinity,
@@ -32,6 +37,8 @@ export function useFilteredContents() {
 
   return {
     isLoading,
+    isError,
+    refetch,
     filteredContents,
     displayedContents,
     hasMore,
