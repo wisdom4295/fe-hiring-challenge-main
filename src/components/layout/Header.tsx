@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { type ChangeEvent, useCallback } from 'react';
 import { useFilterStore } from '../../store/filterStore';
 import {
   HeaderWrapper,
@@ -14,8 +14,8 @@ import {
 export function Header() {
   return (
     <HeaderWrapper>
-      <Logo>CONNECT</Logo>
-      <Meta>
+      <Logo aria-label="CLO-SET Connect">CONNECT</Logo>
+      <Meta aria-hidden="true">
         <span>Storefront archive</span>
         <Dot />
         <span>Curated assets</span>
@@ -29,21 +29,22 @@ export function SearchBar() {
   const setKeyword = useFilterStore((s) => s.setKeyword);
 
   const handleSearch = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       setKeyword(e.target.value);
     },
     [setKeyword]
   );
 
   return (
-    <SearchWrapper>
+    <SearchWrapper role="search">
       <SearchInput
         type="text"
         placeholder="Find the items you're looking for"
         value={keyword}
         onChange={handleSearch}
+        aria-label="Search by title or creator"
       />
-      <SearchMeta>
+      <SearchMeta aria-hidden="true">
         <span>Keyword search</span>
         <SearchIcon>⌕</SearchIcon>
       </SearchMeta>

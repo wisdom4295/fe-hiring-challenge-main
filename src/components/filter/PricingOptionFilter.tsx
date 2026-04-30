@@ -14,7 +14,7 @@ export function PricingOptionFilter() {
   const togglePricingOption = useFilterStore((s) => s.togglePricingOption);
 
   return (
-    <Wrapper>
+    <Wrapper role="group" aria-label="pricing option filter">
       <Label>Pricing</Label>
       <Options>
         {FILTER_OPTIONS.map((opt) => (
@@ -23,6 +23,7 @@ export function PricingOptionFilter() {
               type="checkbox"
               checked={selectedPricingOptions.includes(opt.value)}
               onChange={() => togglePricingOption(opt.value)}
+              aria-label={opt.label}
             />
             <span>{opt.label}</span>
           </CheckboxLabel>
