@@ -1,16 +1,33 @@
 import { useFilterStore } from '../../store/filterStore';
-
+import { useFilteredContents } from '../../hooks/useFilteredContents';
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import { ContentCard } from './ContentCard';
 import { SkeletonCard } from './SkeletonCard';
 import { NoResult } from './NoResult';
-import { Section, Header, Kicker, Meta, Grid, LoadMoreTrigger } from './ContentGrid.styles';
-import { useFilteredContents } from '../../hooks/useFilteredContents.ts';
-import { useInfiniteScroll } from '../../hooks/useInfiniteScroll.ts';
+import { ErrorResult } from './ErrorResult';
+import {
+  Section,
+  Header,
+  Kicker,
+  Meta,
+  Grid,
+  LoadMoreTrigger,
+  Spinner,
+} from './ContentGrid.styles';
 
 export function ContentGrid() {
   const loadMore = useFilterStore((s) => s.loadMore);
-  const { isLoading, displayedContents, hasMore, totalCount } = useFilteredContents();
+  const { isLoading, isError, refetch, displayedContents, hasMore, totalCount } =
+    useFilteredContents();
   const triggerRef = useInfiniteScroll(loadMore, hasMore);
+
+  if (isError) {
+    return (
+      <Section>
+        <ErrorResult onRetry={refetch} />
+      </Section>
+    );
+  }
 
   return (
     <Section>
@@ -29,7 +46,11 @@ export function ContentGrid() {
         </Grid>
       )}
 
-      {hasMore && <LoadMoreTrigger ref={triggerRef} />}
+      {hasMore && (
+        <LoadMoreTrigger ref={triggerRef}>
+          <Spinner />
+        </LoadMoreTrigger>
+      )}
     </Section>
   );
 }

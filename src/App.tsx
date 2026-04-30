@@ -19,9 +19,7 @@ function AppInner() {
         <Shell>
           <SearchBar />
           <FilterBar />
-          <SortRow>
-            <SortDropdown />
-          </SortRow>
+          <SortDropdown />
           <ContentGrid />
         </Shell>
       </Main>
@@ -46,7 +44,7 @@ const AppWrapper = styled.div`
 `;
 
 const Main = styled.main`
-  padding: 32px;
+  padding: 24px 20px 40px;
 `;
 
 const Shell = styled.div`
@@ -54,10 +52,5 @@ const Shell = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-`;
-
-const SortRow = styled.div`
-  display: flex;
-  justify-content: flex-end;
+  gap: 12px;
 `;

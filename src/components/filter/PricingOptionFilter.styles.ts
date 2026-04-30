@@ -7,49 +7,28 @@ export const Wrapper = styled.div`
 `;
 
 export const Label = styled.span`
+  color: #6e747d;
   font-size: 11px;
-  font-weight: 600;
-  color: var(--muted);
-  letter-spacing: 0.12em;
   text-transform: uppercase;
+  letter-spacing: 0.16em;
   white-space: nowrap;
 `;
 
 export const Options = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 16px;
 `;
 
 export const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
+  color: #dbe1e5;
   font-size: 13px;
-  color: var(--text);
   cursor: pointer;
-  padding: 6px 12px;
-  border: 1px solid rgba(121, 236, 206, 0.12);
-  border-radius: 6px;
-  transition:
-    border-color 0.2s,
-    background 0.2s;
 
-  &:hover {
-    border-color: var(--accent);
-    background: rgba(121, 236, 206, 0.06);
+  input[type='checkbox'] {
+    accent-color: #79ecce;
+    cursor: pointer;
   }
-`;
-
-export const HiddenCheckbox = styled.input`
-  display: none;
-`;
-
-export const CustomCheckbox = styled.div<{ checked: boolean }>`
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  border: 1.5px solid ${({ checked }) => (checked ? 'var(--accent)' : '#444')};
-  background: ${({ checked }) => (checked ? 'var(--accent)' : 'transparent')};
-  transition: all 0.15s;
-  flex-shrink: 0;
 `;

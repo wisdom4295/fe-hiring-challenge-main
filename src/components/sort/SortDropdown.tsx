@@ -14,8 +14,12 @@ export function SortDropdown() {
 
   return (
     <Wrapper>
-      <Label>Sort</Label>
-      <Select value={sort} onChange={(e) => setSort(e.target.value as SortOption)}>
+      <Label id="sort-label">Sort</Label>
+      <Select
+        value={sort}
+        onChange={(e) => setSort(e.target.value as SortOption)}
+        aria-labelledby="sort-label"
+      >
         {SORT_OPTIONS.map((opt) => (
           <option key={opt.value} value={opt.value}>
             {opt.label}

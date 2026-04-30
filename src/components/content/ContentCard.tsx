@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { PricingOption } from '../../types';
 import type { ContentItem } from '../../types';
-import { Card, ImageWrapper, Badge, Info, Title, Creator } from './ContentCard.styles';
+import { Card, ImageWrapper, Info, TextGroup, Title, Creator, Price } from './ContentCard.styles';
 
 interface Props {
   item: ContentItem;
@@ -14,17 +14,19 @@ export function ContentCard({ item }: Props) {
     return `$${item.price.toFixed(2)}`;
   }, [item.pricingOption, item.price]);
 
-  const isPaid = item.pricingOption === PricingOption.PAID;
+  const isFree = item.pricingOption !== PricingOption.PAID;
 
   return (
     <Card>
       <ImageWrapper>
         <img src={item.imagePath} alt={item.title} loading="lazy" />
-        <Badge isPaid={isPaid}>{priceLabel}</Badge>
       </ImageWrapper>
       <Info>
-        <Title>{item.title}</Title>
-        <Creator>{item.creator}</Creator>
+        <TextGroup>
+          <Title>{item.title}</Title>
+          <Creator>{item.creator}</Creator>
+        </TextGroup>
+        <Price isFree={isFree}>{priceLabel}</Price>
       </Info>
     </Card>
   );

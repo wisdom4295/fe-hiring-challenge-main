@@ -3,24 +3,23 @@ import styled from '@emotion/styled';
 export const Wrapper = styled.section`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
-  padding: 16px 20px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--panel);
-  flex-wrap: wrap;
+  min-height: 56px;
+  padding: 10px 18px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(121, 236, 206, 0.1);
+  border-radius: 12px;
+  background: rgba(20, 22, 26, 0.9);
 `;
 
 export const Left = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 16px;
+  flex: 1;
 `;
 
-export const Divider = styled.div`
-  width: 1px;
-  height: 20px;
-  background: var(--line);
+export const Right = styled.div`
+  display: flex;
+  align-items: center;
 `;

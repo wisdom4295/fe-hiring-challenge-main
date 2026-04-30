@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createElement } from 'react';
+import { createElement, type ReactNode } from 'react';
 import { useFilteredContents } from '../hooks/useFilteredContents';
 import { useFilterStore } from '../store/filterStore';
 import { PricingOption } from '../types';
@@ -45,7 +45,7 @@ const createWrapper = () => {
   const queryClient = new QueryClient({
     defaultOptions: { queries: { retry: false } },
   });
-  return ({ children }: { children: React.ReactNode }) =>
+  return ({ children }: { children: ReactNode }) =>
     createElement(QueryClientProvider, { client: queryClient }, children);
 };
 
